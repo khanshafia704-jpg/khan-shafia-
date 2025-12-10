@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Simple Website</title>
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#6ee7b7; --muted:#9aa4b2; --glass: rgba(255,255,255,0.04);
+      --radius:12px; --maxw:1100px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; background:linear-gradient(180deg,#071026 0%, #0b1220 100%); color:#e6eef6; -webkit-font-smoothing:antialiased}
+    .container{max-width:var(--maxw); margin:32px auto; padding:20px}
+
+    /* Card */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:var(--radius); padding:22px; box-shadow:0 6px 18px rgba(2,6,23,0.6); backdrop-filter: blur(6px)}
+
+    /* Header */
+    header{display:flex; align-items:center; justify-content:space-between; gap:16px}
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{width:46px; height:46px; border-radius:10px; background:linear-gradient(135deg,var(--accent), #34d399); display:flex; align-items:center; justify-content:center; font-weight:700; color:#023; box-shadow:0 6px 20px rgba(46,201,147,0.12)}
+    nav{display:flex; gap:14px; align-items:center}
+    a.navlink{color:var(--muted); text-decoration:none; font-weight:600}
+    a.navlink:hover{color:var(--accent)}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns:1fr 360px; gap:24px; align-items:center; margin-top:20px}
+    .h-title{font-size:clamp(22px,4vw,36px); line-height:1.05; margin:0}
+    .h-sub{color:var(--muted); margin-top:10px}
+    .cta{margin-top:18px}
+    .btn{padding:10px 16px; border-radius:10px; border:0; cursor:pointer; font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--accent), #34d399); color:#042327}
+    .btn-ghost{background:transparent; color:var(--accent); border:1px solid rgba(110,231,183,0.12)}
+
+    /* Feature cards */
+    .features{display:flex; gap:12px; margin-top:18px}
+    .feat{flex:1; background:var(--glass); padding:12px; border-radius:10px}
+    .feat h4{margin:0 0 6px 0}
+    .feat p{margin:0; color:var(--muted); font-size:14px}
+
+    /* Right column */
+    .card-right{padding:18px}
+    .avatar{width:100%; height:220px; border-radius:10px; background:linear-gradient(120deg,#0ea5a4 0%, #60a5fa 100%); display:flex; align-items:center; justify-content:center; font-size:20px}
+
+    /* About & contact */
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:20px}
+    .about p{color:var(--muted)}
+    form{display:flex; flex-direction:column; gap:10px}
+    input, textarea{background:transparent; border:1px solid rgba(255,255,255,0.06); padding:10px; border-radius:8px; color:inherit}
+    input::placeholder, textarea::placeholder{color:#9aa4b2}
+    footer{margin-top:24px; text-align:center; color:var(--muted); font-size:14px}
+
+    /* responsive */
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr;}
+      .card-right{order:2}
+      .grid-2{grid-template-columns:1fr}
+      nav{display:none}
+    }
+
+    /* small animation */
+    .fadeUp{animation:fadeUp .6s ease both}
+    @keyframes fadeUp{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+
+    /* tiny badges */
+    .badge{display:inline-block; padding:6px 8px; border-radius:999px; background:rgba(255,255,255,0.03); color:var(--muted); font-weight:700; font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <header>
+        <div class="brand">
+          <div class="logo">KS</div>
+          <div>
+            <div style="font-weight:800">Khan Shafia</div>
+            <div style="font-size:12px;color:var(--muted)">Simple HTML template</div>
+          </div>
+        </div>
+        <nav>
+          <a class="navlink" href="#home">Home</a>
+          <a class="navlink" href="#about">About</a>
+          <a class="navlink" href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero fadeUp" id="home">
+        <div>
+          <h1 class="h-title">A clean, modern single-file HTML template — ready to use.</h1>
+          <p class="h-sub">This file contains simple layout, responsive styles, tiny animations and a contact form. Copy it, rename to <code>index.html</code> and open in your browser.</p>
+
+          <div class="cta">
+            <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch</button>
+            <button class="btn btn-ghost" onclick="window.print()">Print</button>
+          </div>
+
+          <div class="features">
+            <div class="feat"><h4>Responsive</h4><p>Looks good on phone, tablet and desktop.</p></div>
+            <div class="feat"><h4>Animated</h4><p>Subtle CSS motion to bring life to the page.</p></div>
+            <div class="feat"><h4>Single file</h4><p>No build tools or external deps — easy to share.</p></div>
+          </div>
+        </div>
+
+        <aside class="card-right">
+          <div class="avatar">Welcome 👋</div>
+          <div style="margin-top:12px;color:var(--muted);font-size:14px">Quick info card — edit the text and colors as you like.</div>
+        </aside>
+      </section>
+
+      <section class="grid-2" id="about">
+        <div class="about card fadeUp">
+          <h3>About this template</h3>
+          <p>This is a friendly starter template for small projects, student assignments or quick demos. It uses only HTML, CSS and a tiny bit of JavaScript inside the same file so you can edit it anywhere.</p>
+          <ul style="color:var(--muted)">
+            <li>One-file: easy to move and share</li>
+            <li>Responsive layout with grid</li>
+            <li>Customizable colors &amp; fonts</li>
+          </ul>
+        </div>
+
+        <div class="card fadeUp" id="contact">
+          <h3>Contact</h3>
+          <form onsubmit="handleSubmit(event)">
+            <input id="name" placeholder="Your name" required />
+            <input id="email" placeholder="Email" type="email" required />
+            <textarea id="message" rows="5" placeholder="Message" required></textarea>
+            <div style="display:flex;gap:8px;margin-top:6px">
+              <button type="submit" class="btn btn-primary">Send</button>
+              <button type="button" class="btn btn-ghost" onclick="resetForm()">Reset</button>
+            </div>
+            <div id="note" style="margin-top:8px;color:var(--muted);font-size:13px">This demo won't actually send an email — it shows a confirmation message instead.</div>
+          </form>
+        </div>
+      </section>
+
+      <footer>
+        <div class="badge">Made with ❤️ — single-file HTML</div>
+        <div style="margin-top:10px">© <span id="year"></span> Khan Shafia</div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // small helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function handleSubmit(e){
+      e.preventDefault();
+      const n = document.getElementById('name').value.trim();
+      const m = document.getElementById('message').value.trim();
+      if(!n || !m){ alert('Please fill required fields'); return }
+      // show a friendly confirmation instead of sending
+      const note = document.getElementById('note');
+      note.textContent = 'Thanks, ' + n + '! Your message has been recorded locally (this is a demo).';
+      note.style.color = 'var(--accent)';
+      // optional: clear form
+      setTimeout(()=>{ resetForm(); note.style.color = ''; note.textContent = 'This demo won\'t actually send an email — it shows a confirmation message instead.' }, 3000)
+    }
+    function resetForm(){ document.getElementById('name').value=''; document.getElementById('email').value=''; document.getElementById('message').value=''}
+  </script>
+</body>
+</html>
